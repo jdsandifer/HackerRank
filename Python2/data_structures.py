@@ -76,3 +76,20 @@ secound_lowest_students.sort()
 map(print, secound_lowest_students)
 
 
+# Read n students names and scores for three classes from STDIN
+# and store them in a dictionary. Also read the name of the student
+# for whom we need to calculate the average score.
+# Print average score to STDOUT precise to two decimal places.
+from operator import add
+
+n = int(raw_input())
+studentDict = {}
+
+for i in range(0,n):
+    studentInfoList = raw_input().split()
+    studentDict[studentInfoList[0]] = studentInfoList[1:]
+    
+requestedStudent = raw_input()
+requestedGrades = map(float, studentDict[requestedStudent])
+average = reduce(add, requestedGrades) / 3
+print("%.2f" % average)
