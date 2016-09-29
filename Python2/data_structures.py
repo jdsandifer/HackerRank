@@ -19,3 +19,36 @@ for i in range(0, n):
         theList.pop()
     elif command[0] == "reverse":
         theList.reverse()
+
+
+# Read a tuple with n elements (integers) from STDIN.
+# Print the hash for the tuple to STDOUT.
+n = int(raw_input()) # n is not actually needed...
+
+inputList = map(int, raw_input().split())
+inputTuple = tuple(inputList)
+print(hash(inputTuple))
+
+
+# Read xMax, yMax, zMax, and n from STDIN.
+# Print all possible values of x, y, and z (from 0 to *Max) 
+# where there sum is not n to STDOUT.
+xMax = int(raw_input())
+yMax = int(raw_input())
+zMax = int(raw_input())
+n = int(raw_input())
+
+print [[x, y, z] for x in range(0, xMax+1) 
+                 for y in range(0, yMax+1) 
+                 for z in range(0, zMax+1) 
+                 if x + y + z != n]
+
+
+# Read n followed by n integers from input from STDIN.
+# Print the value of the second largest number to STDOUT
+n = int(raw_input())
+numbers = map(int, raw_input().split())
+
+numbers.sort()
+numbers.reverse()
+print max([num for num in numbers if num != numbers[0]])
