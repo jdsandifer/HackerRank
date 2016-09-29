@@ -52,3 +52,27 @@ numbers = map(int, raw_input().split())
 numbers.sort()
 numbers.reverse()
 print max([num for num in numbers if num != numbers[0]])
+
+
+# Read n student names and their grades from STDIN.
+# Print then name(s) of the student(s) with the second lowest grade to STDOUT.
+from __future__ import print_function
+
+n = int(raw_input())
+students_and_grades = []
+
+for i in range(0,n):
+    student = raw_input(), float(raw_input())
+    students_and_grades.append(student)
+    
+grades = [g for s, g in students_and_grades]
+grades.sort()
+second_lowest_grade = min([g for g in grades if g != grades[0]])
+
+secound_lowest_students = [s for s, g in students_and_grades 
+                             if g == second_lowest_grade]
+secound_lowest_students.sort()
+
+map(print, secound_lowest_students)
+
+
