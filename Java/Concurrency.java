@@ -18,9 +18,8 @@ class TestThread /*extends Thread*/ implements Runnable {
   
   TestThread(int number) {
     this.number = number;
-    // these lines were added for Runnable
-    Thread newThread = new Thread(this);
-    newThread.start();
+    // this line was added for Runnable
+    new Thread(this).start();
   }
   
   public void run() {
