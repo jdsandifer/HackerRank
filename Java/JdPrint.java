@@ -7,15 +7,11 @@ import java.util.*;
 
 public class JdPrint {
 
-    static void printDouble(double number) {
+    static void print(double number) {
         System.out.println(String.format("%.1f", number));
     }
 
-    static void printFirstDouble(double number) {
-        System.out.print(String.format("%.1f", number));
-    }
-
-    static void printInt(int number) {
+    static void print(int number) {
         System.out.println(number);
     }
 
