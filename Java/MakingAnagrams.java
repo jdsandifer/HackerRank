@@ -15,26 +15,21 @@
 // b anagrams. Any characters can be deleted from either of the strings.
 
 
-import java.util.HashSet;
 import java.util.HashMap;
-import java.lang.Math;
-import java.util.Set;
 import java.util.Iterator;
+import java.lang.Math;
 import java.util.Scanner;
 
 public class Solution {
-    public static int numberNeeded(String first, String second) {
+
+    public static int deletionsToMakeAnagrams(String first, String second) {
       int deletionsNeeded = 0;
         
       // Setup data about strings
-      Set<Character> firstUniques = new HashSet<>();
-      Set<Character> secondUniques = new HashSet<>();
-        
       HashMap<Character, Integer> firstQuantities = new HashMap<>();
       HashMap<Character, Integer> secondQuantities = new HashMap<>();
         
       for (char letter : first.toCharArray()) {
-          firstUniques.add(letter);
           if (firstQuantities.containsKey(letter)) {
               int newQuantity = firstQuantities.get(letter) + 1;
               firstQuantities.put(letter, newQuantity);
@@ -45,7 +40,6 @@ public class Solution {
       }
         
       for (char letter : second.toCharArray()) {
-          secondUniques.add(letter);
           if (secondQuantities.containsKey(letter)) {
               int newQuantity = secondQuantities.get(letter) + 1;
               secondQuantities.put(letter, newQuantity);
@@ -56,21 +50,17 @@ public class Solution {
       }
         
       // Compare strings for differences
-      Iterator<Character> firstIterator = firstUniques.iterator();
-       
-      while (firstIterator.hasNext()) {
-          char letter = firstIterator.next();
-          
-          if (secondUniques.contains(letter)) {
+      for (Character letter : firstQuantities.keySet()) {
+          if (secondQuantities.containsKey(letter)) {
               deletionsNeeded += Math.abs(firstQuantities.get(letter) - secondQuantities.get(letter));
-              secondUniques.remove(letter);
+              secondQuantities.remove(letter);
           }
           else {
               deletionsNeeded += firstQuantities.get(letter);
           }
       }  
         
-      for (char letter : secondUniques) {
+      for (Character letter : secondQuantities.keySet()) {
           deletionsNeeded += secondQuantities.get(letter);
       }  
         
@@ -81,6 +71,6 @@ public class Solution {
         Scanner in = new Scanner(System.in);
         String a = in.next();
         String b = in.next();
-        System.out.println(numberNeeded(a, b));
+        System.out.println(deletionsToMakeAnagrams(a, b));
     }
 }
