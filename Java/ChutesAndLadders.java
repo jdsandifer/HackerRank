@@ -17,34 +17,51 @@ import java.util.Scanner;
 public class Solution {
 
     public static void main(String[] args) {
-        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        // Input reading code to come
-        
-        System.out.println(recursiveMinimumRolls(5, new HashMap(), new HashMap(), 1, new HashSet());
+        Scanner input = new Scanner(System.in);
+        int testCases = input.nextInt();
+        for (int t = 1; t <= testCases; t++) {
+            int ladderCount = input.nextInt();
+            Map<Integer, Integer> ladders = new HashMap<>();
+            for (int l = 1; l <= ladderCount; l++) {
+                ladders.put(input.nextInt(), input.nextInt());
+            }
+            
+            int chuteCount = input.nextInt();
+            Map<Integer, Integer> chutes = new HashMap<>();
+            for (int l = 1; l <= chuteCount; l++) {
+                chutes.put(input.nextInt(), input.nextInt());
+            }
+            
+            int answer = recursiveMinimumRolls(10, chutes, ladders, 1, new HashSet());
+            answer = (answer == Integer.MAX_VALUE) ? -1 : answer;
+            System.out.println(answer);
+        }
     }
     
     public static int recursiveMinimumRolls(
             int size, 
             Map<Integer, Integer> chutes, 
             Map<Integer, Integer> ladders, 
-            int currentSpace, 
+            int space, 
             Set<Integer> spacesVisited) {
-        Set spacesVisitedNow = new HashSet(spacesVisited.toList());
-        spacesVisitedNow.put(space);
+        Set spacesVisitedNow = new HashSet(spacesVisited);
+        spacesVisitedNow.add(space);
         if (space == size * size)
             return 0;
-        else if (chutes.containsKey(space) && !spacesVisited.contains(chutes.get(space))
+        else if (chutes.containsKey(space) && !spacesVisited.contains(chutes.get(space)))
             return recursiveMinimumRolls(size, chutes, ladders, chutes.get(space), spacesVisitedNow);
-        else if (chutes.containsKey(space) && spacesVisited.contains(chutes.get(space))
-            return Integer.MAX;
+        else if (chutes.containsKey(space) && spacesVisited.contains(chutes.get(space)))
+            return Integer.MAX_VALUE;
+        else if (ladders.containsKey(space) && !spacesVisited.contains(ladders.get(space)))
+            return recursiveMinimumRolls(size, chutes, ladders, ladders.get(space), spacesVisitedNow);
+        else if (ladders.containsKey(space) && spacesVisited.contains(ladders.get(space)))
+            return Integer.MAX_VALUE;
         else {
-            int minRolls = Integer.MAX;
-            int currentRolls = Integer.MAX;
-            if (ladders.containsKey(space))
-                minRolls = recursiveMinimumRolls(size, chutes, ladders, ladders.get(space), spacesVisitedNow);
+            int minRolls = Integer.MAX_VALUE;
+            int currentRolls = Integer.MAX_VALUE;
             int possibleRolls = Math.min(6, (size * size) - space);
             for (int i = 1; i <= possibleRolls; i++) {
-                currentRolls = 1 + recursiveMinimumRoll(size, chutes, ladders, space + i, spacesVisitedNow);
+                currentRolls = 1 + recursiveMinimumRolls(size, chutes, ladders, space + i, spacesVisitedNow);
                 minRolls = Math.min(minRolls, currentRolls);
             }
             return minRolls;
