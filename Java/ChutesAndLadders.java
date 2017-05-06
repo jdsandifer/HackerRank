@@ -43,6 +43,13 @@ public class Solution {
             int answer = recursiveMinimumRolls(10, chutes, ladders, 1, new HashSet());
             answer = (answer == Integer.MAX_VALUE) ? -1 : answer;
             System.out.println(answer);
+            for (int i = 1; i <= 10; i++) {
+                System.err.print(((i-1)*10+1) + ": ");
+                for (int j = 1; j <= 10; j++) {
+                    System.err.print(rollsCalculated[i] + ", ");
+                }
+                System.err.println();
+            }
         }
     }
     
@@ -59,25 +66,21 @@ public class Solution {
         spacesVisitedNow.add(space);
         if (space == size * size) {
             err("last space; path: " + spacesVisitedNow);
-            rollsCalculated[space] = 0;
-            return rollsCalculated[space];
+            return addToArray(0, space);
         }
         else if (chutes.containsKey(space) && !spacesVisited.contains(chutes.get(space))) {
-            return recursiveMinimumRolls(size, chutes, ladders, chutes.get(space), spacesVisitedNow);
+            return addToArray(recursiveMinimumRolls(size, chutes, ladders, chutes.get(space), spacesVisitedNow), space);
         }
         else if (chutes.containsKey(space) && spacesVisited.contains(chutes.get(space))) {
             err("caught a chute loop");
-            rollsCalculated[space] = Integer.MAX_VALUE;
-            return rollsCalculated[space];
+            return addToArray(Integer.MAX_VALUE, space);
         }
         else if (ladders.containsKey(space) && !spacesVisited.contains(ladders.get(space))) {
-            rollsCalculated[space] = recursiveMinimumRolls(size, chutes, ladders, ladders.get(space), spacesVisitedNow);
-            return rollsCalculated[space];
+            return addToArray(recursiveMinimumRolls(size, chutes, ladders, ladders.get(space), spacesVisitedNow), space);
         }
         else if (ladders.containsKey(space) && spacesVisited.contains(ladders.get(space))) {
             err("caught a ladder loop");
-            rollsCalculated[space] = Integer.MAX_VALUE;
-            return rollsCalculated[space];
+            return addToArray(Integer.MAX_VALUE, space);
         }
         else {
             int minRolls = Integer.MAX_VALUE;
@@ -91,9 +94,18 @@ public class Solution {
                     currentRolls = 1 + nextSpaceRolls;
                 minRolls = Math.min(minRolls, currentRolls);
             }
-            rollsCalculated[space] = minRolls;
-            return rollsCalculated[space];
+            return addToArray(minRolls, space);
         }
+    }
+    
+    public static int addToArray(int newValue, int index) {
+        if (rollsCalculated[index] == -1) {
+            rollsCalculated[index] = newValue;
+        }
+        else {
+            rollsCalculated[index] = Math.min(newValue, rollsCalculated[index]);
+        }
+        return rollsCalculated[index];
     }
     
     public static void err(String message) {
