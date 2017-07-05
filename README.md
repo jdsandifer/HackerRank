@@ -5,3 +5,8 @@ This repository is a collection of solutions to problems found on HackerRank.com
 I've divided the collection up by language and then grouped them in files by function type.
 
 When solving these kinds of problems in time-based contests, I also use AutoHotKey to run scripts I've written to autocomplete boilerplate code like standard input and output setups, as well as standard loops and function constructs.
+
+### Code
+- [ Java ](https://github.com/jdsandifer/HackerRank/tree/master/Java)
+- [ JavaScript ](https://github.com/jdsandifer/HackerRank/tree/master/JavaScript)
+- [ Python ](https://github.com/jdsandifer/HackerRank/tree/master/Python2)
