@@ -6,7 +6,7 @@ I've divided the collection up by language and then grouped them in files by fun
 
 When solving these kinds of problems in time-based contests, I also use AutoHotKey to run scripts I've written to autocomplete boilerplate code like standard input and output setups, as well as standard loops and function constructs.
 
-Important Note: Some variables in the code have been given short names - like "n" or "m" - because they correspond to the labels used in the problem outline. This saves time and increases clarity for these types of code challenges where time is of the essence. In contrast, I would use more explanative names in production code where clear communication with coworkers is crucial.
+***Important Note:** Some variables in the code have been given short names - like "n" or "m" - because they correspond to the labels used in the problem outline. This saves time and increases clarity for these types of code challenges where time is of the essence. In contrast, I would use more explanative names in production code where clear communication with coworkers is crucial.*
 
 ### Code
 - [ Java ](https://github.com/jdsandifer/HackerRank/tree/master/Java)
