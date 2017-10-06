@@ -55,7 +55,7 @@ function findPairsWithGivenDifference( integers, k ) {
   
     // if the difference is more than k, 
     // increase the first index to decrease the difference
-    if ( difference > k ) {
+    else if ( difference > k ) {
       firstIndex++
     }  
   }
