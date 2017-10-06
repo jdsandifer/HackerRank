@@ -9,6 +9,6 @@ When solving these kinds of problems in time-based contests, I also use AutoHotK
 ***Important Note:** Some variables in the code have been given short names - like "n" or "m" - because they correspond to the labels used in the problem outline. This saves time and increases clarity for these types of code challenges where time is of the essence. In contrast, I would use more explanative names in production code where clear communication with coworkers is crucial.*
 
 ### Code
-- [ Java ](https://github.com/jdsandifer/HackerRank/tree/master/Java)
 - [ JavaScript ](https://github.com/jdsandifer/HackerRank/tree/master/JavaScript)
 - [ Python ](https://github.com/jdsandifer/HackerRank/tree/master/Python2)
+- [ Java ](https://github.com/jdsandifer/HackerRank/tree/master/Java)
