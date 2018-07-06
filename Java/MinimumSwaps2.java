@@ -1,17 +1,17 @@
 public class MinimumSwaps2 {
 
-    // Given an array of unique whole numbers 1...n where n is the length of the array,
-    // find the minimum number of swaps needed to place the numbers in ascending order.
-    //
-    // For this problem I chose not to mutate the array although doing so could have
-    // reduced space complexity from O(k) additional space to O(1). (Where k is the 
-    // number of swaps needed. 0 <= k < n as max swaps needed is one less than n.)
-    //
-    // Time complexity is O(n) as the maximum iterations for the inner loop is n - 1 but
-    // that length guarantees every other iteration of the outer loop causes the inner loop
-    // to be skipped. In short, the average length of the inner loop is constant 
-    // with respect to n.
-    //
+    /*
+     * Given an array of unique whole numbers 1...n where n is the length of the array,
+     * find the minimum number of swaps needed to place the numbers in ascending order.
+     *
+     * For this problem I chose not to mutate the array although doing so could have
+     * reduced space complexity from O(k) additional space to O(1). (Where k is the 
+     * number of swaps needed. 0 <= k < n as max swaps needed is one less than n.)
+     *
+     * Time complexity is O(n) as the maximum total iterations for both the inner and
+     * outer loops is n. Even though the inner loops has a varying amount of iterations
+     * per outer loop iteration, it's still guaranteed not to visit the same value twice.
+     */
     static int minimumSwaps(int[] arr) {
         int swapsNeeded = 0;
         Set<Integer> swappedIndeces = new HashSet<>(); // will hold 1-based indeces
@@ -43,17 +43,16 @@ public class MinimumSwaps2 {
 
                 // Then use the value here as an index to find where we should swap.
                 // Keep going until we hit a value that leads to an index 
-                // we've already considered.
+                // we've already encountered.
                 swapIndex = arr[swapIndex - 1];
                 inSpot = arr[swapIndex - 1] == swapIndex;
                 swappedAlready = swappedIndeces.contains(swapIndex);
             }
 
             // Subtract one for the last swap - a mutual swap 
-            // which is counted twice in this algorithm.
+            // which is counted twice in the loop.
             swapsNeeded -= 1;
         }
-        
         return swapsNeeded;
     }
     
