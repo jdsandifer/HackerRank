@@ -1,16 +1,14 @@
 /* This problem seemed to be a simple array manipulation
-   problem which I approached in an object-oriented fashion.
+   problem followed by a simple traversal to determine the
+   maximum value in the final array. For this I decided to
+   approach the problem in an object-oriented fashion.
    However, the time constraints made this solution timeout
-   due to an O(m*k) time complexity where k is the average
-   number of array elements to change for each of the m
-   operations. The size of the array (n) only enters the 
-   equation for memory complexity and initialization time.
-   k is a fraction of n so the time complexity could be 
-   simplified to O(m*n).
+   due to an O(m*n) time complexity where n is size of the 
+   array and m is the number of operations on the array.
    
-   This solution creates an array of instructions for 
+   The working solution creates an array of instructions for 
    creating the final array to avoid the actual array 
-   manipulation. This results in a O(m+n) time complexity 
+   manipulation. This results in an O(m+n) time complexity 
    where m is the number of operations and n is the size
    of the array - one pass through each.
  */
